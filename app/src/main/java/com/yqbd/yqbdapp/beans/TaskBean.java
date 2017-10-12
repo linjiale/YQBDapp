@@ -29,15 +29,6 @@ public class TaskBean implements Serializable {
     private Long completeTime;
     private Integer maxPeopleNumber;
     private Long deadline;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     private String simpleDrawingAddress;
     private Integer isGroup;
     private ArrayList<TypeBean> typeBeans;
