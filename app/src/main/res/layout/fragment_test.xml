@@ -1,0 +1,83 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.yqbd.yqbdapp.fragments.TestFragment">
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <Button
+                android:text="发布任务"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"/>
+        <Button
+                android:text="暂时没有"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button2"/>
+
+        <Button
+                android:text="创建组"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_create_group"/>
+
+        <!--<Button-->
+        <!--android:text="删除组"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/btn_delete_group"/>-->
+
+        <Button
+                android:text="公司发布长期任务"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_publishtask_longterm"/>
+
+        <Button
+                android:text="查看某个小组(申请加入)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_toJoinGroup"/>
+        <!--<Button-->
+        <!--android:text="查看某个小组(取消加入申请)"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/btn_toCancelJoin"/>-->
+
+        <!--<Button-->
+        <!--android:text="查看某个小组(申请退出)"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/btn_toQuitGroup"/>-->
+
+        <Button
+                android:text="用户管理已加入或申请加入的小组"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_toUserGroup"/>
+
+        <!--<Button-->
+        <!--android:text="公司处理入组申请"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/btn_checkApplication"/>-->
+
+        <!--<Button-->
+        <!--android:text="公司处理退组申请"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/btn_checkQuit"/>-->
+
+        <Button
+                android:text="公司管理已开设的组和未处理的申请"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_toCompanyGroup"/>
+    </LinearLayout>
+
+
+
+</FrameLayout>
