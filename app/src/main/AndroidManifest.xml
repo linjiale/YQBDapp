@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".activities.task.SingleTaskActivity">
         </activity>
+        <activity android:name=".activities.PersonalActivity">
+        </activity>
     </application>
 
 </manifest>

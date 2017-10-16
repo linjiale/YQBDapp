@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:layout_marginTop="10dp"
+              android:padding="10dp">
     <ImageView
-            android:layout_width="75dp"
-            android:layout_height="88dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            android:layout_width="81dp"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/timg"
             android:id="@+id/companyImage"
-    />
+            android:padding="1dp"/>
+    <Space
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"/>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="92dp">
+            android:layout_height="120dp">
         <TextView
                 android:text="项目名字"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="@color/title_gray"
                 android:id="@+id/nameText"/>
         <TextView
                 android:text="项目介绍"
@@ -45,11 +54,10 @@
                     android:layout_weight="1"/>
 
             <Button
-                android:text="评价"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/commentButton"
-        />
+                    android:text="评价"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/commentButton"/>
         </LinearLayout>
     </LinearLayout>
 

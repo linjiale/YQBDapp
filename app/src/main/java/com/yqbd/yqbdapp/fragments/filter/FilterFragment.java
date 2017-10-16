@@ -1,5 +1,6 @@
 package com.yqbd.yqbdapp.fragments.filter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import com.yqbd.yqbdapp.actions.IBaseAction;
 import com.yqbd.yqbdapp.actions.ITaskAction;
 import com.yqbd.yqbdapp.actions.ITypeAction;
 import com.yqbd.yqbdapp.actions.impl.BaseActionImpl;
+import com.yqbd.yqbdapp.activities.task.SingleTaskActivity;
 import com.yqbd.yqbdapp.adapter.MyTaskAdapter;
 import com.yqbd.yqbdapp.annotation.Action;
 import com.yqbd.yqbdapp.beans.TaskBean;
@@ -47,7 +49,6 @@ public class FilterFragment extends BaseFragment implements IActionCallBack {
 
 
     private TextView textView;
-    private IBaseAction baseAction = new BaseActionImpl();
 
     @Action
     private ITaskAction taskAction;
@@ -98,10 +99,10 @@ public class FilterFragment extends BaseFragment implements IActionCallBack {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initializeTop(view, false, "查看任务");
+        //initializeTop(view, false, "查看任务");
         main = getActivity().findViewById(R.id.main);
-        priceLayout = (LinearLayout) getActivity().findViewById(R.id.ranking_price);
-        filterLayout = (LinearLayout) getActivity().findViewById(R.id.ranking_filter);
+        priceLayout = (LinearLayout) view.findViewById(R.id.ranking_price);
+        filterLayout = (LinearLayout) view.findViewById(R.id.ranking_filter);
 
         Vo vo1 = new Vo();
         vo1.setStr1("i3");
@@ -141,6 +142,16 @@ public class FilterFragment extends BaseFragment implements IActionCallBack {
         adapter = new MyTaskAdapter(tasks, getActivity());
         taskList.setAdapter(adapter);
         taskAction.getAllTasks();
+        adapter.setOnItemClickListener(new MyTaskAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, TaskBean taskBean) {
+                Intent intent = new Intent(getActivity(), SingleTaskActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("taskBean", taskBean);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
         //localPost(new String("初始界面"));
         //       new Thread(new MyThread()).start();
     }

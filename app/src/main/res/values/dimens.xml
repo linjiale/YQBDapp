@@ -7,4 +7,15 @@
     <dimen name="tag_vertical_spacing">6.0dip</dimen>
     <dimen name="common_margin">12.0dip</dimen>
     <dimen name="common_margin_10">10.0dip</dimen>
+
+    <dimen name="text_left_margin">8dp</dimen>
+    <dimen name="text_top_margin">8dp</dimen>
+    <dimen name="text_right_margin">8dp</dimen>
+    <dimen name="text_bottom_margin">8dp</dimen>
+
+    <!--text size for the whole project-->
+    <dimen name="text_size_primary">20sp</dimen>
+    <dimen name="text_size_button_primary">20sp</dimen>
+
+    <dimen name="text_size_login_password_attention">16sp</dimen>
 </resources>

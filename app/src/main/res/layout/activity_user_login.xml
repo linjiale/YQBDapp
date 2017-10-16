@@ -7,7 +7,81 @@
               android:gravity="center_horizontal"
               tools:context="com.yqbd.yqbdapp.activities.login.UserLoginActivity">
     <include layout="@layout/top_toolbar"/>
-    <EditText
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_background_white">
+
+            <AutoCompleteTextView
+                    android:id="@+id/user_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/text_left_margin"
+                    android:hint="@string/telephone"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_background_white">
+
+            <EditText
+                    android:id="@+id/user_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/text_left_margin"
+                    android:textSize="@dimen/text_size_primary"
+                    android:hint="@string/password"
+                    android:imeActionId="@+id/login"
+                    android:imeActionLabel="@string/login_in_submit"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+                android:text="（请输入6~18位密码）"
+                android:textColor="@color/color_text_gray"
+                android:textSize="@dimen/text_size_login_password_attention"
+                android:paddingBottom="@dimen/text_bottom_margin"
+                android:paddingLeft="@dimen/text_left_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/passwordAttention"
+                android:background="@color/color_background_white"/>
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_weight="1"/>
+            <Button
+                    android:text="@string/login_in_submit"
+                    android:textSize="18sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/login"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/title_gray"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--<EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -18,9 +92,9 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:id="@+id/user_password"/>
-    <Button
+            android:id="@+id/user_password"/>-->
+    <!--<Button
             android:text="@string/login"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/login"/>
+            android:layout_height="wrap_content" android:id="@+id/login"/>-->
 </LinearLayout>

@@ -49,14 +49,14 @@ public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.ViewHolder
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, TaskBean taskBean);
     }
 
     @Override
     public void onClick(View v) {
         if (mOnItemClickListener != null) {
             //注意这里使用getTag方法获取position
-            mOnItemClickListener.onItemClick(v, (int) v.getTag());
+            mOnItemClickListener.onItemClick(v, myTaskList.get((int) v.getTag()));
         }
     }
 

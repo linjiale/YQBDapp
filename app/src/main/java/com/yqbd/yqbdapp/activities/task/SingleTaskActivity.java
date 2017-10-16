@@ -1,6 +1,8 @@
 package com.yqbd.yqbdapp.activities.task;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,6 +33,12 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
     @BindView(R.id.task_description)
     TextView taskDescription;
 
+    @BindView(R.id.swipe_refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
+
+    @BindView(R.id.moments_appBar)
+    AppBarLayout appBarLayout;
+
     @VoData
     private TaskBean taskBean;
 
@@ -42,12 +50,38 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_task);
         ButterKnife.bind(this);
+        initView();
+
         Bundle bundle = getIntent().getExtras();
         taskBean = (TaskBean) bundle.getSerializable("taskBean");
-
+        initializeTop(true, taskBean.getTaskTitle());
         taskAction.isUserTaken(bundle.getInt("userId"), taskBean.getTaskId());
     }
 
+    @Override
+    protected void initView() {
+        super.initView();
+        appBarLayout = (AppBarLayout) findViewById(R.id.moments_appBar);
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (verticalOffset >= 0) {
+                    swipeRefreshLayout.setEnabled(true);
+                } else {
+                    swipeRefreshLayout.setEnabled(false);
+                }
+            }
+        });
+
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
 
     @OnClick(R.id.task_button)
     public void onViewClicked() {

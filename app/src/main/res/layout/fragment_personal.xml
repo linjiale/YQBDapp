@@ -10,7 +10,6 @@
                   android:layout_height="fill_parent"
                   android:orientation="vertical"
                   tools:context="com.yqbd.yqbdapp.fragments.PersonalFragment">
-        <include layout="@layout/top_toolbar"/>
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/head_portrait"
                 android:layout_height="wrap_content"

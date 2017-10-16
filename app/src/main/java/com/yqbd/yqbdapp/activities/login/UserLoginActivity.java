@@ -26,6 +26,8 @@ public class UserLoginActivity extends BaseActivity implements IActionCallBack, 
         setContentView(R.layout.activity_user_login);
         sharedPreferences = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         findViewById(R.id.login).setOnClickListener(this);
+        initView();
+        initializeTop(true, "登录");
     }
 
     private EditText getUserAccount() {

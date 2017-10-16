@@ -93,7 +93,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
         userAction.getUserInfoByUserID(userID);
-        initializeTop(view, false, "个人主页");
+        //initializeTop(view, false, "个人主页");
         //EventBusUtils.register();
         //new Thread(new PersonalThread()).start();
     }
