@@ -49,6 +49,7 @@ dependencies {
     compile 'com.google.guava:guava:20.0'
     compile 'com.jakewharton:butterknife:8.8.1'
     compile 'org.jetbrains:annotations-java5:15.0'
+    compile 'com.fang:dashview:v1.0.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.0.1'

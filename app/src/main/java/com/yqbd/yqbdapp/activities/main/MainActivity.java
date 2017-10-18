@@ -24,6 +24,7 @@ import com.yqbd.yqbdapp.actions.IBaseAction;
 import com.yqbd.yqbdapp.activities.BaseActivity;
 import com.yqbd.yqbdapp.activities.PersonalActivity;
 import com.yqbd.yqbdapp.annotation.Action;
+import com.yqbd.yqbdapp.fragments.MainFragment;
 import com.yqbd.yqbdapp.fragments.PersonalFragment;
 import com.yqbd.yqbdapp.fragments.TestFragment;
 import com.yqbd.yqbdapp.fragments.filter.FilterFragment;
@@ -144,7 +145,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         switch (position) {
             case 0:
                 setToolBarTitleText("主页");
-                fragment = TestFragment.newInstance();
+                fragment = MainFragment.newInstance();
                 break;
             case 1:
                 setToolBarTitleText("查看任务");

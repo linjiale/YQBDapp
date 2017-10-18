@@ -1,11 +1,9 @@
 package com.yqbd.yqbdapp.actions.impl;
 
-import android.app.Activity;
 import android.util.Log;
 import com.yqbd.yqbdapp.actions.IUserAction;
 import com.yqbd.yqbdapp.annotation.ActionService;
 import com.yqbd.yqbdapp.utils.BaseJson;
-import org.json.JSONException;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -32,12 +30,11 @@ public class UserActionImpl extends BaseActionImpl implements IUserAction {
     }
 
     @Override
-    public BaseJson register(String accountNumber, String userPassword, String realName, String telephone) {
+    public BaseJson register(String accountNumber, String userPassword, String realName) {
         try {
             Map<String, String> map = new HashMap<String, String>();
             map.put("accountNumber", accountNumber);
             map.put("userPassword", userPassword);
-            map.put("telephone", telephone);
             map.put("realName", realName);
             String result = httpConnectByPost("/user/register", map);
             return new BaseJson(result);

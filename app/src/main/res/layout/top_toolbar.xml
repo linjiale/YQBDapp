@@ -12,6 +12,6 @@
             android:layout_gravity="center"
             android:id="@+id/topToolBarTitle"
             android:text="标题"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="22sp"/>
 </android.support.v7.widget.Toolbar>
