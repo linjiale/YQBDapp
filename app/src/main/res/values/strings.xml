@@ -15,16 +15,16 @@
     <string name="foot_mark">我的足迹</string>
     <string name="professional_level">服务专业性等级</string>
     <string name="credit_level">信用与服务等级</string>
-    <string name="task_title">标题</string>
-    <string name="task_description">描述</string>
-    <string name="task_address">地点（可选）</string>
-    <string name="pay">报酬</string>
+    <string name="task_title">•标题</string>
+    <string name="task_description">•描述</string>
+    <string name="task_address">•地点</string>
+    <string name="pay">•报酬</string>
     <string name="task_publish">提交</string>
     <string name="dealline">请选择截止日期</string>
     <string name="upload_picture">上传图片</string>
     <string name="sign_up_people_number">报名人数</string>
     <string name="current_people_number">已招人数</string>
-    <string name="max_people_number">最大人数</string>
+    <string name="max_people_number">•最大人数</string>
     <string name="group_id">对象组号</string>
     <string name="group_title">组名</string>
     <string name="candidate_name">申请人</string>
@@ -33,7 +33,11 @@
     <string name="province">省</string>
     <string name="city">市</string>
     <string name="district">区</string>
+    <string name="primary_work">•主要工作</string>
 
+    <string name="school">学校</string>
+    <string name="occupation">职业</string>
+    <string name="company_name">公司</string>
 
     <!-- Strings related to login -->
     <string name="telephone">手机号</string>

@@ -7,7 +7,7 @@
     <ImageView
             android:layout_width="160dp"
             android:layout_height="240dp"
-            app:srcCompat="@drawable/timg"
+            app:srcCompat="@drawable/default_picture"
             android:id="@+id/recommendItemImage"/>
     <TextView
             android:text="TextView"

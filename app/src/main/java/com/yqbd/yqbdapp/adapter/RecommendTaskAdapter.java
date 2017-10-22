@@ -1,6 +1,7 @@
 package com.yqbd.yqbdapp.adapter;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.beans.TaskBean;
+import com.yqbd.yqbdapp.utils.AsyncBitmapLoader;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
  * Created by 佳乐 on 2017/7/17.
  */
 public class RecommendTaskAdapter extends RecyclerView.Adapter<RecommendTaskAdapter.ViewHolder> implements View.OnClickListener {
+    private AsyncBitmapLoader asyncBitmapLoader = AsyncBitmapLoader.asyncBitmapLoader;
     private List<TaskBean> myTaskList;
     private Activity activity;
     private OnItemClickListener mOnItemClickListener = null;
@@ -78,9 +81,18 @@ public class RecommendTaskAdapter extends RecyclerView.Adapter<RecommendTaskAdap
         holder.view.setTag(position);
         //System.out.println("position:" + position);
         holder.nameText.setText(taskItem.getTaskTitle());
-        String time = new Timestamp(taskItem.getPublishTime()).toString();
+        //String time = new Timestamp(taskItem.getPublishTime()).toString();
         //System.out.println(time);
-
+        Bitmap bitmap = asyncBitmapLoader.loadBitmap(holder.companyImage, taskItem.getSimpleDrawingAddress(), holder.companyImage.getLayoutParams().width, holder.companyImage.getLayoutParams().height, new AsyncBitmapLoader.ImageCallBack() {
+            @Override
+            public void imageLoad(ImageView imageView, Bitmap bitmap) {
+                // TODO Auto-generated method stub
+                imageView.setImageBitmap(bitmap);
+            }
+        });
+        if (bitmap != null) {
+            holder.companyImage.setImageBitmap(bitmap);
+        }
     }
 
     @Override

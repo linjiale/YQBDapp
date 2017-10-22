@@ -5,5 +5,5 @@ import com.yqbd.yqbdapp.annotation.ExecutionThreadMode;
 
 public interface IBaseAction {
     @ExecutionMode(ExecutionThreadMode.SYNC)
-    int getCurrentUserID();
+    Integer getCurrentUserID();
 }

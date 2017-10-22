@@ -7,9 +7,11 @@
               android:layout_marginTop="10dp"
               android:padding="10dp">
     <ImageView
-            android:layout_width="81dp"
+            android:layout_width="wrap_content"
             android:layout_height="120dp"
-            app:srcCompat="@drawable/timg"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            app:srcCompat="@drawable/default_picture"
             android:id="@+id/companyImage"
             android:padding="3dp"/>
     <com.fang.dashview.DashView

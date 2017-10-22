@@ -3,25 +3,12 @@ package com.yqbd.yqbdapp.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.common.collect.Lists;
-import com.yqbd.yqbdapp.ActionInject;
+import com.yqbd.yqbdapp.utils.ActionInject;
 import com.yqbd.yqbdapp.R;
-import com.yqbd.yqbdapp.callback.IActionCallBack;
-import com.yqbd.yqbdapp.actions.IBaseAction;
-import com.yqbd.yqbdapp.annotation.Action;
-import com.yqbd.yqbdapp.application.ContextApplication;
-import com.yqbd.yqbdapp.utils.BaseJson;
 import org.greenrobot.eventbus.EventBus;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.util.List;
 
 public class BaseFragment extends Fragment {
 

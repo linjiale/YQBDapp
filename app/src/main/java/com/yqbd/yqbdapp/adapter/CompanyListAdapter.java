@@ -7,13 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.yqbd.yqbdapp.R;
-import com.yqbd.yqbdapp.beans.TaskBean;
+import com.yqbd.yqbdapp.beans.CompanyInfoBean;
 import com.yqbd.yqbdapp.utils.AsyncBitmapLoader;
 
 import java.sql.Timestamp;
@@ -22,25 +21,17 @@ import java.util.List;
 /**
  * Created by 佳乐 on 2017/7/17.
  */
-public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.ViewHolder> implements View.OnClickListener {
+public class CompanyListAdapter extends RecyclerView.Adapter<CompanyListAdapter.ViewHolder> implements View.OnClickListener {
     private AsyncBitmapLoader asyncBitmapLoader = AsyncBitmapLoader.asyncBitmapLoader;
-    private List<TaskBean> myTaskList;
+    private List<CompanyInfoBean> myTaskList;
     private Activity activity;
     private OnItemClickListener mOnItemClickListener = null;
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.companyImage)
+        @BindView(R.id.recommendItemImage)
         ImageView companyImage;
-        @BindView(R.id.nameText)
+        @BindView(R.id.textView)
         TextView nameText;
-        @BindView(R.id.DescriptionText)
-        TextView descriptionText;
-        @BindView(R.id.timeText)
-        TextView timeText;
-        @BindView(R.id.statusText)
-        TextView statusText;
-        @BindView(R.id.commentButton)
-        Button commentButton;
         private View view;
 
         public ViewHolder(View view) {
@@ -52,7 +43,7 @@ public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.ViewHolder
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view, TaskBean taskBean);
+        void onItemClick(View view, CompanyInfoBean taskBean);
     }
 
     @Override
@@ -67,14 +58,14 @@ public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.ViewHolder
         this.mOnItemClickListener = listener;
     }
 
-    public MyTaskAdapter(List<TaskBean> myTaskList, Activity activity) {
+    public CompanyListAdapter(List<CompanyInfoBean> myTaskList, Activity activity) {
         this.myTaskList = myTaskList;
         this.activity = activity;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_task_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recommend_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
         view.setOnClickListener(this);
         return holder;
@@ -83,35 +74,15 @@ public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        TaskBean taskItem = myTaskList.get(position);
+        CompanyInfoBean taskItem = myTaskList.get(position);
         Log.d(getClass().getSimpleName(), position + ":" + taskItem.toString());
         //System.out.println("name:" + taskItem.getTaskTitle());
         holder.view.setTag(position);
         //System.out.println("position:" + position);
-        holder.descriptionText.setText(taskItem.getTaskDescription());
-        holder.nameText.setText(taskItem.getTaskTitle());
-        String time = new Timestamp(taskItem.getPublishTime()).toString();
+        holder.nameText.setText(taskItem.getCompanyName());
+        //String time = new Timestamp(taskItem.getPublishTime()).toString();
         //System.out.println(time);
-        holder.timeText.setText(time);
-        switch (taskItem.getTaskStatus()) {
-            case 0:
-                holder.statusText.setText("进行中");
-                holder.commentButton.setVisibility(View.GONE);
-                break;
-            case 1:
-                holder.statusText.setText("进行中");
-                holder.commentButton.setVisibility(View.GONE);
-                break;
-            case 2:
-                holder.statusText.setText("已完成,待评价");
-                holder.commentButton.setText("去评价");
-                break;
-            default:
-                holder.statusText.setText("已结束");
-                holder.commentButton.setVisibility(View.GONE);
-                break;
-        }
-        Bitmap bitmap = asyncBitmapLoader.loadBitmap(holder.companyImage, taskItem.getSimpleDrawingAddress(), holder.companyImage.getLayoutParams().width, holder.companyImage.getLayoutParams().height, new AsyncBitmapLoader.ImageCallBack() {
+        Bitmap bitmap = asyncBitmapLoader.loadBitmap(holder.companyImage, taskItem.getHeadPortraitAddress(), holder.companyImage.getLayoutParams().width, holder.companyImage.getLayoutParams().height, new AsyncBitmapLoader.ImageCallBack() {
             @Override
             public void imageLoad(ImageView imageView, Bitmap bitmap) {
                 // TODO Auto-generated method stub

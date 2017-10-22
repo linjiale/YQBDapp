@@ -20,7 +20,7 @@ public class BaseActionImpl implements IBaseAction {
 
     @ExecutionMode(ExecutionThreadMode.SYNC)
     @Override
-    public int getCurrentUserID() {
+    public Integer getCurrentUserID() {
         SharedPreferences sharedPreferences = ContextApplication.getAppContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         int userID = sharedPreferences.getInt("userID", 0);
         return userID;

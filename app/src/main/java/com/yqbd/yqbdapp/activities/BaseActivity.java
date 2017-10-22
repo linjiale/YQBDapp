@@ -1,13 +1,12 @@
 package com.yqbd.yqbdapp.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.yqbd.yqbdapp.ActionInject;
+import com.yqbd.yqbdapp.utils.ActionInject;
 import com.yqbd.yqbdapp.R;
 import org.greenrobot.eventbus.EventBus;
 

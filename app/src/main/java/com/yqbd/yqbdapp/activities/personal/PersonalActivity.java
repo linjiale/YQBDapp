@@ -1,4 +1,4 @@
-package com.yqbd.yqbdapp.activities;
+package com.yqbd.yqbdapp.activities.personal;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.actions.IUserAction;
+import com.yqbd.yqbdapp.activities.BaseActivity;
 import com.yqbd.yqbdapp.activities.initial.InitialActivity;
 import com.yqbd.yqbdapp.activities.task.TaskListActivity;
 import com.yqbd.yqbdapp.annotation.Action;
@@ -49,6 +50,15 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     @BindView(R.id.credit_level)
     TextView creditLevel;
 
+    @BindView(R.id.telephone)
+    TextView telephone;
+    @BindView(R.id.school)
+    TextView school;
+    @BindView(R.id.occupation)
+    TextView occupation;
+    @BindView(R.id.company_name)
+    TextView companyName;
+
     @Action
     private IUserAction userAction;
 
@@ -63,12 +73,12 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_personal);
         ButterKnife.bind(this);
         initView();
-        initializeTop(true,"账号信息");
+        initializeTop(true, "账号信息");
         userID = getIntent().getIntExtra("userID", 0);
         userAction.getUserInfoByUserID(userID);
     }
 
-    @OnClick({R.id.logout, R.id.my_published, R.id.my_taken})
+    @OnClick({R.id.logout, R.id.my_taken})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -81,14 +91,6 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
                 intent.setClass(this, InitialActivity.class);
                 startActivity(intent);
                 finish();
-                break;
-            case R.id.my_published:
-                Intent intent2 = new Intent(this, TaskListActivity.class);
-                Bundle bundle = new Bundle();
-                //bundle.putInt("tasksType", 0);
-                intent2.putExtras(bundle);
-                intent2.putExtra("title", "我发布的任务");
-                startActivity(intent2);
                 break;
             case R.id.my_taken:
                 Intent intent3 = new Intent(this, TaskListActivity.class);
@@ -113,6 +115,10 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
             idNumber.setText(userInfoBean.getAccountNumber().toString());
             professionalLevel.setText(userInfoBean.getProfessionalLevel().toString());
             creditLevel.setText(userInfoBean.getCreditLevel().toString());
+            telephone.setText(userInfoBean.getTelephone());
+            occupation.setText(userInfoBean.getOccupation());
+            school.setText(userInfoBean.getSchool());
+            companyName.setText(userInfoBean.getCompanyName());
         } catch (Exception e) {
 
         }

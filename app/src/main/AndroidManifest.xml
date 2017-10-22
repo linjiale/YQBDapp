@@ -32,9 +32,13 @@
         </activity>
         <activity android:name=".activities.task.SingleTaskActivity">
         </activity>
-        <activity android:name=".activities.PersonalActivity">
+        <activity android:name=".activities.personal.PersonalActivity">
         </activity>
         <activity android:name=".activities.login.RegisterActivity">
+        </activity>
+        <activity android:name=".activities.settings.SettingsActivity">
+        </activity>
+        <activity android:name=".activities.CompanyInfoActivity">
         </activity>
     </application>
 

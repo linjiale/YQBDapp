@@ -2,14 +2,7 @@ package com.yqbd.yqbdapp.application;
 
 import android.app.Application;
 import android.content.Context;
-import com.google.common.collect.Maps;
-import com.yqbd.yqbdapp.ActionInject;
-import com.yqbd.yqbdapp.actions.IBaseAction;
-import com.yqbd.yqbdapp.annotation.ActionService;
-import dalvik.system.DexFile;
-
-import java.lang.reflect.Field;
-import java.util.*;
+import com.yqbd.yqbdapp.utils.ActionInject;
 
 public class ContextApplication extends Application {
 

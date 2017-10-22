@@ -1,38 +1,142 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.yqbd.yqbdapp.fragments.MainFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:padding="5dp">
-            <TextView
-                    android:text="今日推荐"
-                    android:textSize="18sp"
-                    android:textColor="@color/title_gray"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" android:layout_width="wrap_content"/>
-            <TextView
-                    android:text="全部 >"
-                    android:textColor="@color/title_gray"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="10dp"
-                    android:layout_width="wrap_content"/>
-        </LinearLayout>
-        <android.support.v7.widget.RecyclerView
+            android:layout_height="match_parent"
+            tools:context="com.yqbd.yqbdapp.fragments.MainFragment">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:divider="#00000000"
-                android:dividerHeight="15dp"
-                android:id="@+id/recommendTaskList"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:padding="5dp">
+                <TextView
+                        android:text="志愿推荐"
+                        android:textSize="18sp"
+                        android:textColor="@color/title_gray"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" android:layout_width="wrap_content"/>
+                <TextView
+                        android:text="全部 >"
+                        android:textColor="@color/title_gray"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:layout_width="wrap_content"/>
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:divider="#00000000"
+                    android:dividerHeight="15dp"
+                    android:id="@+id/recommendTaskList"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:padding="5dp">
+                <TextView
+                        android:text="志趣推荐"
+                        android:textSize="18sp"
+                        android:textColor="@color/title_gray"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" android:layout_width="wrap_content"/>
+                <TextView
+                        android:text="暂不开放 >"
+                        android:textColor="@color/title_gray"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:layout_width="wrap_content"/>
+            </LinearLayout>
+            <!--<android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:divider="#00000000"
+                    android:dividerHeight="15dp"
+                    android:id="@+id/recommendTaskList1"/>-->
+        </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:padding="5dp">
+                <TextView
+                        android:text="广告"
+                        android:textSize="18sp"
+                        android:textColor="@color/title_gray"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" android:layout_width="wrap_content"/>
+                <TextView
+                        android:text="暂无 >"
+                        android:textColor="@color/title_gray"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:layout_width="wrap_content"/>
+            </LinearLayout>
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="240dp">
+                <ImageView
+                        android:layout_width="400dp"
+                        android:layout_height="240dp"
+                        app:srcCompat="@drawable/adv"
+                        android:id="@+id/recommendItemImage"/>
+                <TextView
+                        android:text="海外游学 | 三十天，做一个真正的伦敦学子"
+                        android:layout_width="400dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/textView"
+                        android:background="@color/black_50_alpha"
+                        android:textColor="@color/white"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:layout_above="@+id/recommendItemImage"
+                        android:layout_alignBottom="@+id/recommendItemImage"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="0dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal"
+                          android:padding="5dp">
+                <TextView
+                        android:text="合作商推荐"
+                        android:textSize="18sp"
+                        android:textColor="@color/title_gray"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" android:layout_width="wrap_content"/>
+                <TextView
+                        android:text="全部 >"
+                        android:textColor="@color/title_gray"
+                        android:layout_height="wrap_content"
+                        android:paddingRight="10dp"
+                        android:layout_width="wrap_content"/>
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:divider="#00000000"
+                    android:dividerHeight="15dp"
+                    android:id="@+id/companyList"/>
+        </LinearLayout>
     </LinearLayout>
 
 
-</FrameLayout>
+</ScrollView>

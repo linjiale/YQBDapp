@@ -1,4 +1,4 @@
-package com.yqbd.yqbdapp;
+package com.yqbd.yqbdapp.utils;
 
 import android.app.Activity;
 import android.app.Application;
@@ -182,6 +182,15 @@ public class ActionInject {
                 return null;
             }
         }
+
+        @Override
+        public String toString() {
+            return "ProxyHandler{" +
+                    "activity=" + activity +
+                    ", baseAction=" + baseAction +
+                    ", actionCallBack=" + actionCallBack +
+                    '}';
+        }
     }
 
     public static Class getActionService(Field field) {
@@ -197,6 +206,7 @@ public class ActionInject {
         return c;
     }
 
+    @Deprecated
     public static Class getActionService(IBaseAction baseAction) {
         Class c = actionClassMap.get(baseAction.getClass());
         return c;

@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +23,13 @@ import com.ashokvarma.bottomnavigation.TextBadgeItem;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.actions.IBaseAction;
 import com.yqbd.yqbdapp.activities.BaseActivity;
-import com.yqbd.yqbdapp.activities.PersonalActivity;
+import com.yqbd.yqbdapp.activities.personal.PersonalActivity;
+import com.yqbd.yqbdapp.activities.settings.SettingsActivity;
+import com.yqbd.yqbdapp.activities.task.TaskListActivity;
 import com.yqbd.yqbdapp.annotation.Action;
+import com.yqbd.yqbdapp.fragments.BlankFragment;
 import com.yqbd.yqbdapp.fragments.MainFragment;
 import com.yqbd.yqbdapp.fragments.PersonalFragment;
-import com.yqbd.yqbdapp.fragments.TestFragment;
 import com.yqbd.yqbdapp.fragments.filter.FilterFragment;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -66,7 +69,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 .setBackgroundColor(Color.RED)
                 .setText("3")
                 .setHideOnSelect(true);
-        bottomNavigationBar.setInActiveColor(R.color.black)
+        bottomNavigationBar.setInActiveColor(R.color.gray)
                 .setActiveColor(R.color.white)
                 .setBarBackgroundColor(R.color.blue);
         bottomNavigationBar
@@ -96,10 +99,22 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent = new Intent();
                 switch (item.getItemId()) {
                     case R.id.personal:
-                        Intent intent = new Intent(MainActivity.this, PersonalActivity.class);
+                        intent.setClass(MainActivity.this, PersonalActivity.class);
                         intent.putExtra("userID", baseAction.getCurrentUserID());
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_collect:
+                        intent.setClass(MainActivity.this, TaskListActivity.class);
+                        //intent.putExtra("userID", baseAction.getCurrentUserID());
+                        intent.putExtra("title","我的收藏");
+                        startActivity(intent);
+                        break;
+                    case R.id.nav_settings:
+                        intent.setClass(MainActivity.this, SettingsActivity.class);
+                        //intent.putExtra("userID", baseAction.getCurrentUserID());
                         startActivity(intent);
                         break;
                     default:
@@ -109,6 +124,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // 為了讓 Toolbar 的 Menu 有作用，這邊的程式不可以拿掉
+        getMenuInflater().inflate(R.menu.top_toolbar_style, menu);
+        return true;
     }
 
     @Override
@@ -148,13 +170,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 fragment = MainFragment.newInstance();
                 break;
             case 1:
-                setToolBarTitleText("查看任务");
+                setToolBarTitleText("志愿");
                 fragment = FilterFragment.newInstance();
                 break;
             case 2:
-                setToolBarTitleText("个人主页");
+                setToolBarTitleText("志趣");
                 int userID = baseAction.getCurrentUserID();
-                fragment = PersonalFragment.newInstance(userID);
+                fragment = BlankFragment.newInstance();
+                //fragment = PersonalFragment.newInstance(userID);
                 break;
         }
         if (fragment.isAdded()) {

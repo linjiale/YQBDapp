@@ -17,7 +17,7 @@
 
     <color name="blue">#ff33b5e5</color>
 
-    <color name="border_gray">#efefef</color>
+    <color name="border_gray">#b1b1b1</color>
 
     <color name="color_cihei">#ff333333</color>
 
@@ -128,6 +128,8 @@
     <color name="white_60_alpha">#99ffffff</color>
 
     <color name="white_80_alpha">#bbffffff</color>
+
+    <color name="blue_80_alpha">#14939393</color>
 
     <color name="title_gray">#2c2c2c</color>
 </resources>

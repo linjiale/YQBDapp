@@ -4,12 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/swipe_refresh">
     <android.support.design.widget.CoordinatorLayout
             android:id="@+id/activity_moments"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:context="com.yqbd.yqbdapp.activities.task.SingleTaskActivity">
         <android.support.design.widget.AppBarLayout
                 android:layout_width="match_parent"
@@ -26,7 +26,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/background"/>
+                        android:background="@drawable/background"
+                        android:id="@+id/imageView"/>
                 <android.support.v7.widget.Toolbar
                         xmlns:android="http://schemas.android.com/apk/res/android"
                         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -49,48 +50,257 @@
 
         <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:text="@string/task_title"
-                        android:ems="10"
-                        android:id="@+id/task_title"/>
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:text="@string/task_description"
-                        android:ems="10"
-                        android:id="@+id/task_description"/>
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text"
-                        android:text="@string/task_address"
-                        android:ems="10"
-                        android:id="@+id/task_address"/>
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="numberDecimal"
-                        android:text="@string/pay"
-                        android:ems="10"
-                        android:id="@+id/pay"/>
-                <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:text="@string/max_people_number"
-                        android:ems="10"
-                        android:id="@+id/max_people_number"/>
+                    android:orientation="vertical"
+                    android:background="@color/white">
                 <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/task_title"
+                            android:textSize="20sp"
+                            android:textColor="@color/black"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/task_title"
+                            android:textSize="16sp"
+                            android:id="@+id/task_title"
+                            android:padding="10dp"
+                            android:background="@color/white"/>
+                </LinearLayout>
+                <com.yqbd.yqbdapp.tagview.widget.TagListView
+                        xmlns:f="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/tagview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="@dimen/common_margin"
+                        android:paddingLeft="@dimen/common_margin"
+                        android:paddingRight="@dimen/common_margin"
+                        android:paddingTop="16.0dip"
+                        f:horizontalSpacing="@dimen/tag_horizontal_spacing"
+                        f:orientation="horizontal"
+                        f:verticalSpacing="@dimen/tag_vertical_spacing"/>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/task_description"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:background="@color/white">
+                        <View
+                                android:layout_width="1dip"
+                                android:layout_height="match_parent"
+                                android:background="#585858"
+                                android:layout_gravity="center_horizontal"/>
+                        <TextView
+                                android:layout_marginStart="2dp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="@string/task_description"
+                                android:layout_weight="1"
+                                android:ellipsize="end"
+                                android:lines="2"
+                                android:id="@+id/task_description"/>
+                        <ImageButton
+                                android:layout_gravity="bottom"
+                                android:layout_width="8dp"
+                                android:layout_height="10dp"
+                                android:layout_marginBottom="2dp"
+                                app:srcCompat="@drawable/sort_common_down"
+                                android:id="@+id/imageButton"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/primary_work"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/primary_work"
+                            android:padding="10dp"
+                            android:id="@+id/primary_work"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/task_address"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/task_address"
+                            android:padding="10dp"
+                            android:id="@+id/task_address"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="•开始时间"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="开始时间"
+                            android:padding="10dp"
+                            android:id="@+id/start_time"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="•结束时间"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="结束时间"
+                            android:padding="10dp"
+                            android:id="@+id/complete_time"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pay"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pay"
+                            android:padding="10dp"
+                            android:id="@+id/pay"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:text="@string/max_people_number"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/max_people_number"
+                        android:padding="10dp"
+                        android:id="@+id/max_people_number"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:text="•联系方式"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="联系方式"
+                            android:padding="10dp"
+                            android:id="@+id/primary_contact"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:text="•合作单位"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="合作单位"
+                            android:padding="10dp"
+                            android:id="@+id/other_company"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/white">
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:text="•备注"/>
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:text="备注"
+                            android:id="@+id/remark"/>
+                </LinearLayout>
+               <!-- <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -106,33 +316,22 @@
                             android:gravity="center"
                             android:id="@+id/dealline_time"
                             android:textSize="24sp"/>
+                </LinearLayout》-->
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp"
+                        android:background="@color/white">
+                    <Button
+                            android:layout_gravity="right"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="申请"
+                            android:background="@drawable/button"
+                            android:id="@+id/task_button"/>
                 </LinearLayout>
-                <Button
-                        android:text="@string/upload_picture"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:id="@+id/upload_picture"/>
-                <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/default_picture"
-                        android:id="@+id/imageView"/>
-                <com.yqbd.yqbdapp.tagview.widget.TagListView
-                        xmlns:f="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/tagview"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/common_margin"
-                        android:paddingLeft="@dimen/common_margin"
-                        android:paddingRight="@dimen/common_margin"
-                        android:paddingTop="16.0dip"
-                        f:horizontalSpacing="@dimen/tag_horizontal_spacing"
-                        f:orientation="horizontal"
-                        f:verticalSpacing="@dimen/tag_vertical_spacing"/>
-                <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/task_button"/>
+
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
