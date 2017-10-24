@@ -6,27 +6,26 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.google.gson.Gson;
 import com.yqbd.yqbdapp.R;
+import com.yqbd.yqbdapp.actions.IUserAction;
 import com.yqbd.yqbdapp.activities.initial.InitialActivity;
 import com.yqbd.yqbdapp.activities.task.TaskListActivity;
-import com.yqbd.yqbdapp.annotation.VoDataField;
-import com.yqbd.yqbdapp.callback.IActionCallBack;
-import com.yqbd.yqbdapp.actions.IUserAction;
 import com.yqbd.yqbdapp.annotation.Action;
 import com.yqbd.yqbdapp.annotation.VoData;
+import com.yqbd.yqbdapp.annotation.VoDataField;
 import com.yqbd.yqbdapp.beans.UserInfoBean;
+import com.yqbd.yqbdapp.callback.IActionCallBack;
 import com.yqbd.yqbdapp.utils.BaseJson;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +41,7 @@ public class PersonalFragment extends BaseFragment implements View.OnClickListen
 
     @VoDataField
     @BindView(R.id.head_portrait)
-    CircleImageView headPortrait;
+     ImageView headPortrait;
 
     @VoDataField
     @BindView(R.id.nick_name)

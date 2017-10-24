@@ -10,47 +10,53 @@
                   android:layout_height="fill_parent"
                   android:orientation="vertical"
                   tools:context="com.yqbd.yqbdapp.fragments.PersonalFragment">
-        <de.hdodenhof.circleimageview.CircleImageView
+        <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                <!--android:id="@+id/head_portrait"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:padding="10dp"-->
+                <!--android:src="@drawable/head"/>-->
+        <ImageView
                 android:id="@+id/head_portrait"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/head"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@drawable/head"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="28sp"
                 android:text="@string/nick_name"
                 android:id="@+id/nick_name"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="28sp"
                 android:text="@string/sex"
                 android:id="@+id/sex"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="28sp"
                 android:text="@string/id_number"
                 android:id="@+id/id_number"/>
-        <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/foot_mark"
-                android:id="@+id/foot_mark"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="testtesttest"
-        />
-        <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textSize="28sp"
                 android:text="@string/professional_level"
                 android:id="@+id/professional_level"/>
         <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="28sp"
                 android:text="@string/credit_level"
                 android:id="@+id/credit_level"/>
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/foot_mark"
+                android:id="@+id/foot_mark"/>
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
