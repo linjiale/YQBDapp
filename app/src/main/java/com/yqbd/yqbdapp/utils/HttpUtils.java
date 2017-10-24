@@ -3,6 +3,7 @@ package com.yqbd.yqbdapp.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import com.google.gson.Gson;
+import com.yqbd.yqbdapp.actions.impl.BaseActionImpl;
 import okhttp3.*;
 
 import java.io.ByteArrayOutputStream;
@@ -14,7 +15,7 @@ import java.util.Map;
 
 public class HttpUtils {
 
-    protected static final String path = "http://10.0.3.2:8080";
+    protected static final String path = "http://goout-1252946747.cossh.myqcloud.com";
 
     //private OkHttpClient client = new OkHttpClient();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");

@@ -177,7 +177,7 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
                 taskAction.collect(taskBean.getTaskId());
                 break;
             case R.id.action_share:
-                makeToast("暂不可用");
+                makeToast("获得测试资格才可使用");
                 break;
 
         }

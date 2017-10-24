@@ -106,7 +106,6 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void OnSuccess(BaseJson baseJson) {
         try {
-            Gson gson = new Gson();
             UserInfoBean userInfoBean = baseJson.getBean(UserInfoBean.class);
 
             //UserInfoBean userInfoBean = UserInfoBean.newInstance(baseJson.getJSONObject());

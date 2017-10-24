@@ -3,6 +3,7 @@ package com.yqbd.yqbdapp.activities.main;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,24 +17,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import butterknife.BindView;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ashokvarma.bottomnavigation.TextBadgeItem;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.actions.IBaseAction;
+import com.yqbd.yqbdapp.actions.IUserAction;
 import com.yqbd.yqbdapp.activities.BaseActivity;
 import com.yqbd.yqbdapp.activities.personal.PersonalActivity;
 import com.yqbd.yqbdapp.activities.settings.SettingsActivity;
 import com.yqbd.yqbdapp.activities.task.TaskListActivity;
 import com.yqbd.yqbdapp.annotation.Action;
+import com.yqbd.yqbdapp.beans.UserInfoBean;
+import com.yqbd.yqbdapp.callback.IActionCallBack;
 import com.yqbd.yqbdapp.fragments.BlankFragment;
 import com.yqbd.yqbdapp.fragments.MainFragment;
 import com.yqbd.yqbdapp.fragments.PersonalFragment;
 import com.yqbd.yqbdapp.fragments.filter.FilterFragment;
+import com.yqbd.yqbdapp.utils.AsyncBitmapLoader;
+import com.yqbd.yqbdapp.utils.BaseJson;
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener, View.OnClickListener {
+public class MainActivity extends BaseActivity implements BottomNavigationBar.OnTabSelectedListener, View.OnClickListener, IActionCallBack {
 
     @BindView(R.id.drawer_layout)
     protected DrawerLayout drawerLayout;
@@ -41,21 +49,31 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @BindView(R.id.nav_view)
     protected NavigationView navigationView;
 
+    //@BindView(R.id.head_portrait)
     protected CircleImageView headPortraitCircleImageView;
 
     @BindView(R.id.toolBar_head_portrait)
     protected CircleImageView smallHeadPortraitCircleImageView;
 
+    //@BindView(R.id.nick_name)
+    protected TextView nickName;
+
+    //@BindView(R.id.telephone)
+    protected TextView telephone;
+
     private Fragment oldFragment, fragment;
 
+    private UserInfoBean userInfoBean;
+
     @Action
-    private IBaseAction baseAction;
+    private IUserAction userAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        userAction.getUserInfoByUserID(userAction.getCurrentUserID());
     }
 
     @Override
@@ -103,13 +121,13 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 switch (item.getItemId()) {
                     case R.id.personal:
                         intent.setClass(MainActivity.this, PersonalActivity.class);
-                        intent.putExtra("userID", baseAction.getCurrentUserID());
+                        intent.putExtra("userID", userAction.getCurrentUserID());
                         startActivity(intent);
                         break;
                     case R.id.nav_collect:
                         intent.setClass(MainActivity.this, TaskListActivity.class);
                         //intent.putExtra("userID", baseAction.getCurrentUserID());
-                        intent.putExtra("title","我的收藏");
+                        intent.putExtra("title", "我的收藏");
                         startActivity(intent);
                         break;
                     case R.id.nav_settings:
@@ -124,6 +142,28 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 return true;
             }
         });
+        drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                headPortraitCircleImageView = (CircleImageView) navigationView.findViewById(R.id.head_portrait);
+                nickName = (TextView) navigationView.findViewById(R.id.nick_name);
+                telephone = (TextView) navigationView.findViewById(R.id.telephone);
+                nickName.setText(userInfoBean.getNickName());
+                telephone.setText(userInfoBean.getTelephone());
+                Bitmap bitmap = asyncBitmapLoader.loadBitmap(headPortraitCircleImageView, userInfoBean.getHeadPortrait(), headPortraitCircleImageView.getLayoutParams().width, headPortraitCircleImageView.getLayoutParams().height, new AsyncBitmapLoader.ImageCallBack() {
+                    @Override
+                    public void imageLoad(ImageView imageView, Bitmap bitmap) {
+                        // TODO Auto-generated method stub
+                        imageView.setImageBitmap(bitmap);
+                        //item.picture = bitmap;
+                    }
+                });
+                if (bitmap != null) {
+                    headPortraitCircleImageView.setImageBitmap(bitmap);
+                }
+            }
+        });
     }
 
     @Override
@@ -131,6 +171,30 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
         // 為了讓 Toolbar 的 Menu 有作用，這邊的程式不可以拿掉
         getMenuInflater().inflate(R.menu.top_toolbar_style, menu);
         return true;
+    }
+
+    private void openDrawer(){
+        drawerLayout.openDrawer(GravityCompat.START);
+        try{
+            headPortraitCircleImageView = (CircleImageView) navigationView.findViewById(R.id.head_portrait);
+            nickName = (TextView) navigationView.findViewById(R.id.nick_name);
+            telephone = (TextView) navigationView.findViewById(R.id.telephone);
+            nickName.setText(userInfoBean.getNickName());
+            telephone.setText(userInfoBean.getTelephone());
+            Bitmap bitmap = asyncBitmapLoader.loadBitmap(headPortraitCircleImageView, userInfoBean.getHeadPortrait(), headPortraitCircleImageView.getLayoutParams().width, headPortraitCircleImageView.getLayoutParams().height, new AsyncBitmapLoader.ImageCallBack() {
+                @Override
+                public void imageLoad(ImageView imageView, Bitmap bitmap) {
+                    // TODO Auto-generated method stub
+                    imageView.setImageBitmap(bitmap);
+                    //item.picture = bitmap;
+                }
+            });
+            if (bitmap != null) {
+                headPortraitCircleImageView.setImageBitmap(bitmap);
+            }
+        }catch (Exception e){
+            makeToast("连接错误");
+        }
     }
 
     @Override
@@ -175,7 +239,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                 break;
             case 2:
                 setToolBarTitleText("志趣");
-                int userID = baseAction.getCurrentUserID();
+                int userID = userAction.getCurrentUserID();
                 fragment = BlankFragment.newInstance();
                 //fragment = PersonalFragment.newInstance(userID);
                 break;
@@ -211,5 +275,26 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
     @Override
     public void onTabReselected(int position) {
 
+    }
+
+    @Override
+    public void OnSuccess(BaseJson baseJson) {
+        userInfoBean = baseJson.getBean(UserInfoBean.class);
+        Bitmap bitmap1 = asyncBitmapLoader.loadBitmap(smallHeadPortraitCircleImageView, userInfoBean.getHeadPortrait(), smallHeadPortraitCircleImageView.getLayoutParams().width, smallHeadPortraitCircleImageView.getLayoutParams().height, new AsyncBitmapLoader.ImageCallBack() {
+            @Override
+            public void imageLoad(ImageView imageView, Bitmap bitmap) {
+                // TODO Auto-generated method stub
+                imageView.setImageBitmap(bitmap);
+                //item.picture = bitmap;
+            }
+        });
+        if (bitmap1 != null) {
+            smallHeadPortraitCircleImageView.setImageBitmap(bitmap1);
+        }
+    }
+
+    @Override
+    public void onFailed(BaseJson baseJson) {
+        makeToast("连接错误");
     }
 }

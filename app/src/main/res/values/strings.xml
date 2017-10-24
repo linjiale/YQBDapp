@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YQBD</string>
+    <string name="app_name">GoOut</string>
     <string name="user_register">用户注册</string>
     <string name="company_register">商家注册</string>
     <string name="company_login">商家登录</string>
