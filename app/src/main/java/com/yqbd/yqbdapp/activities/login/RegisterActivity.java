@@ -43,10 +43,10 @@ public class RegisterActivity extends BaseActivity implements IActionCallBack, V
         switch (view.getId()) {
             case R.id.register:
                 //TODO implement
-                /*String accountNumberString = getUserAccount().getText().toString();
+                String accountNumberString = getUserAccount().getText().toString();
                 String userPasswordString = getUserPassword().getText().toString();
-                userAction.register(accountNumberString,userPasswordString,"hello");*/
-                makeLongToast("系统处于测试中，仅获得测试资格的用户可注册，请注意您的手机短信");
+                userAction.register(accountNumberString,userPasswordString,"hello");
+               // makeLongToast("系统处于测试中，仅获得测试资格的用户可注册，请注意您的手机短信");
                 break;
         }
     }

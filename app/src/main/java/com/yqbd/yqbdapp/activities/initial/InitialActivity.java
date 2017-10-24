@@ -82,6 +82,7 @@ public class InitialActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void OnSuccess(BaseJson baseJson) {
         try {
+            sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();//获取编辑器
             editor.putInt("userID", baseJson.getSingleIntegerResult());
             editor.commit();

@@ -2,7 +2,6 @@ package com.yqbd.yqbdapp.activities.task;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.preference.TwoStatePreference;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
@@ -23,7 +22,6 @@ import com.yqbd.yqbdapp.actions.ITaskAction;
 import com.yqbd.yqbdapp.activities.BaseActivity;
 import com.yqbd.yqbdapp.annotation.Action;
 import com.yqbd.yqbdapp.annotation.VoData;
-import com.yqbd.yqbdapp.annotation.VoDataField;
 import com.yqbd.yqbdapp.beans.TaskBean;
 import com.yqbd.yqbdapp.beans.TypeBean;
 import com.yqbd.yqbdapp.callback.IActionCallBack;
@@ -112,6 +110,12 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         startTime.setText(simpleDateFormat.format(new Date(taskBean.getStartTime())));
         completeTime.setText(simpleDateFormat.format(new Date(taskBean.getCompleteTime())));
+        taskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makeToast("通过身份验证才能申请");
+            }
+        });
         imageButton.setOnClickListener(new View.OnClickListener() {
             Boolean flag = true;
 
@@ -122,13 +126,16 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
                     imageButton.setImageResource(R.drawable.sort_common_up);
                     taskDescription.setEllipsize(null); // 展开
                     taskDescription.setSingleLine(flag);
+
                 } else {
                     flag = true;
                     imageButton.setImageResource(R.drawable.sort_common_down);
                     taskDescription.setEllipsize(TextUtils.TruncateAt.END); // 收缩
                     taskDescription.setLines(2);
+
                 }
             }
+
         });
 
         ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
@@ -146,6 +153,7 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
         }
         setUpData();
     }
+
 
     private void setUpData() {
         for (TypeBean typeBean : taskBean.getTypeBeans()) {
@@ -179,6 +187,7 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
             case R.id.action_share:
                 makeToast("获得测试资格才可使用");
                 break;
+
 
         }
         return super.onOptionsItemSelected(item);

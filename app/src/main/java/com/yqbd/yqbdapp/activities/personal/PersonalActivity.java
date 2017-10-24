@@ -3,14 +3,14 @@ package com.yqbd.yqbdapp.activities.personal;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.google.gson.Gson;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.actions.IUserAction;
 import com.yqbd.yqbdapp.activities.BaseActivity;
@@ -21,6 +21,7 @@ import com.yqbd.yqbdapp.annotation.VoData;
 import com.yqbd.yqbdapp.annotation.VoDataField;
 import com.yqbd.yqbdapp.beans.UserInfoBean;
 import com.yqbd.yqbdapp.callback.IActionCallBack;
+import com.yqbd.yqbdapp.utils.AsyncBitmapLoader;
 import com.yqbd.yqbdapp.utils.BaseJson;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -118,6 +119,17 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
             occupation.setText(userInfoBean.getOccupation());
             school.setText(userInfoBean.getSchool());
             companyName.setText(userInfoBean.getCompanyName());
+            Bitmap bitmap = asyncBitmapLoader.loadBitmap(headPortrait, userInfoBean.getHeadPortrait(), headPortrait.getLayoutParams().width, headPortrait.getLayoutParams().height, new AsyncBitmapLoader.ImageCallBack() {
+                @Override
+                public void imageLoad(ImageView imageView, Bitmap bitmap) {
+                    // TODO Auto-generated method stub
+                    imageView.setImageBitmap(bitmap);
+                    //item.picture = bitmap;
+                }
+            });
+            if (bitmap != null) {
+                headPortrait.setImageBitmap(bitmap);
+            }
         } catch (Exception e) {
 
         }
