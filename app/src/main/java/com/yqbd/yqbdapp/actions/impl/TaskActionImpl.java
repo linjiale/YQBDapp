@@ -121,4 +121,65 @@ public class TaskActionImpl extends BaseActionImpl implements ITaskAction {
         }
     }
 
+    @Override
+    public BaseJson isCollect(Integer taskId) {
+        try {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("userId", getCurrentUserID().toString());
+            map.put("taskId", taskId.toString());
+            String result = httpConnectByPost("/task/isCollected", map);
+            BaseJson baseJson = new BaseJson(result);
+            return baseJson;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.w(getClass().getSimpleName(), e);
+            return networkErrorResult();
+        }
+    }
+
+    @Override
+    public BaseJson collect(Integer taskId) {
+        try {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("userId", getCurrentUserID().toString());
+            map.put("taskId", taskId.toString());
+            String result = httpConnectByPost("/task/collect", map);
+            BaseJson baseJson = new BaseJson(result);
+            return baseJson;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.w(getClass().getSimpleName(), e);
+            return networkErrorResult();
+        }
+    }
+
+    @Override
+    public BaseJson getCollectedTasks() {
+        try {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("userId", getCurrentUserID().toString());
+            String result = httpConnectByPost("/task/getCollectedTasks", map);
+            BaseJson baseJson = new BaseJson(result);
+            return baseJson;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.w(getClass().getSimpleName(), e);
+            return networkErrorResult();
+        }
+    }
+
+    @Override
+    public BaseJson getCompanyTasks(Integer companyId) {
+        try {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("companyId",companyId.toString());
+            String result = httpConnectByPost("/task/getCompanyTasks", map);
+            BaseJson baseJson = new BaseJson(result);
+            return baseJson;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.w(getClass().getSimpleName(), e);
+            return networkErrorResult();
+        }
+    }
 }

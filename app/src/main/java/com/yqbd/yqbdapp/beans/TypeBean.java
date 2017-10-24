@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by 11022 on 2017/7/17.
  */
 @Data
 @NoArgsConstructor
-public class TypeBean {
+public class TypeBean implements Serializable{
     private Integer typeId;
     private String typeName;
 

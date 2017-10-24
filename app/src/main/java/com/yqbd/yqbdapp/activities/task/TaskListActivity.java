@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.common.collect.Lists;
@@ -47,7 +48,17 @@ public class TaskListActivity extends BaseActivity implements IActionCallBack {
         myTaskList.setLayoutManager(linearLayoutManager);
         adapter = new MyTaskAdapter(taskBeanList, this);
         myTaskList.setAdapter(adapter);
-        taskAction.getPublishTasks(taskAction.getCurrentUserID());
+        adapter.setOnItemClickListener(new MyTaskAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, TaskBean taskBean) {
+                Intent intent = new Intent(getApplicationContext(), SingleTaskActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("taskBean", taskBean);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+        taskAction.getCollectedTasks();
     }
 
     @Override

@@ -10,7 +10,7 @@ import android.widget.*;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import com.yqbd.yqbdapp.ActionInject;
+import com.yqbd.yqbdapp.utils.ActionInject;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.actions.ITaskAction;
 import com.yqbd.yqbdapp.actions.ITypeAction;

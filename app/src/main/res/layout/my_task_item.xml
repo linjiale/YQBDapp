@@ -9,7 +9,7 @@
     <ImageView
             android:layout_width="81dp"
             android:layout_height="120dp"
-            app:srcCompat="@drawable/timg"
+            app:srcCompat="@drawable/default_picture"
             android:id="@+id/companyImage"
             android:padding="3dp"/>
     <com.fang.dashview.DashView
@@ -37,6 +37,8 @@
                 android:text="项目介绍"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="3"
                 android:id="@+id/DescriptionText"/>
         <TextView
                 android:text="项目时间"

@@ -26,6 +26,7 @@ public class TaskBean implements Serializable {
     private Double pay;
     private Integer taskStatus;
     private Long publishTime;
+    private Long startTime;
     private Long completeTime;
     private Integer maxPeopleNumber;
     private Long deadline;
@@ -33,6 +34,10 @@ public class TaskBean implements Serializable {
     private Integer isGroup;
     private ArrayList<TypeBean> typeBeans;
     private String name;
+    private String primaryWork;
+    private String otherCompany;
+    private String primaryContact;
+    private String remark;
 
     public void setTypeBeans(List<Tag> tags) {
         typeBeans = Lists.newArrayList();

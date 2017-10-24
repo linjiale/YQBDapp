@@ -12,12 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yqbd.yqbdapp.activities.CompanyInfoActivity;
+import com.yqbd.yqbdapp.utils.ActionInject;
 import com.yqbd.yqbdapp.R;
+import com.yqbd.yqbdapp.actions.ICompanyAction;
 import com.yqbd.yqbdapp.actions.ITaskAction;
 import com.yqbd.yqbdapp.activities.task.SingleTaskActivity;
-import com.yqbd.yqbdapp.adapter.MyTaskAdapter;
+import com.yqbd.yqbdapp.adapter.CompanyListAdapter;
 import com.yqbd.yqbdapp.adapter.RecommendTaskAdapter;
 import com.yqbd.yqbdapp.annotation.Action;
+import com.yqbd.yqbdapp.beans.CompanyInfoBean;
 import com.yqbd.yqbdapp.beans.TaskBean;
 import com.yqbd.yqbdapp.callback.IActionCallBack;
 import com.yqbd.yqbdapp.utils.BaseJson;
@@ -35,8 +39,14 @@ public class MainFragment extends BaseFragment implements IActionCallBack {
     private RecyclerView taskList;
     private RecommendTaskAdapter adapter;
     private LinearLayoutManager linearLayoutManager;
+
+    private List<CompanyInfoBean> companyInfoBeans = new ArrayList<>();
+    private RecyclerView companyList;
+    private CompanyListAdapter companyListAdapter;
     @Action
     private ITaskAction taskAction;
+
+    private ICompanyAction companyAction;
 
     public MainFragment() {
         // Required empty public constructor
@@ -79,6 +89,33 @@ public class MainFragment extends BaseFragment implements IActionCallBack {
                 startActivity(intent);
             }
         });
+        companyList = (RecyclerView) getActivity().findViewById(R.id.companyList);
+        companyList.setLayoutManager(new LinearLayoutManager(this.getActivity(), OrientationHelper.HORIZONTAL, true));
+        companyListAdapter = new CompanyListAdapter(companyInfoBeans, getActivity());
+        companyList.setAdapter(companyListAdapter);
+        companyListAdapter.setOnItemClickListener(new CompanyListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, CompanyInfoBean taskBean) {
+                Intent intent = new Intent(getActivity(), CompanyInfoActivity.class);
+                intent.putExtra("companyId", taskBean.getCompanyId());
+                startActivity(intent);
+            }
+        });
+        companyAction = ActionInject.bindActionCallBack(this, ICompanyAction.class, new IActionCallBack() {
+            @Override
+            public void OnSuccess(BaseJson baseJson) {
+                companyInfoBeans.clear();
+                companyInfoBeans.addAll(baseJson.getBeanList(CompanyInfoBean[].class));
+                companyListAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailed(BaseJson baseJson) {
+                Log.d(getLogTag(), baseJson.getErrorMessage());
+                makeToast("Failed");
+            }
+        });
+        companyAction.getAllCompanies();
     }
 
     @Override

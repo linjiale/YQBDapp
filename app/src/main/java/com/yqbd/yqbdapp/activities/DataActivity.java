@@ -73,6 +73,15 @@ public abstract class DataActivity extends AppCompatActivity {
         });
     }
 
+    protected void makeLongToast(final String content) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(DataActivity.this, content, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     protected void bindVoData() {
         //Field voDataField = null;
         List<Field> fields = Lists.newArrayList(this.getClass().getDeclaredFields());

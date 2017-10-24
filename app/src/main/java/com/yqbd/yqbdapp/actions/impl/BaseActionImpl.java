@@ -15,12 +15,12 @@ import java.util.Map;
 
 @ActionService("baseAction")
 public class BaseActionImpl implements IBaseAction {
-    protected static final String path = "http://10.0.3.2:8080";
+    public static final String path = "http://101.132.108.158:8080";
 
 
     @ExecutionMode(ExecutionThreadMode.SYNC)
     @Override
-    public int getCurrentUserID() {
+    public Integer getCurrentUserID() {
         SharedPreferences sharedPreferences = ContextApplication.getAppContext().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         int userID = sharedPreferences.getInt("userID", 0);
         return userID;

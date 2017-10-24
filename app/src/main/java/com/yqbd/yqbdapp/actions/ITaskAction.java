@@ -23,4 +23,12 @@ public interface ITaskAction extends IBaseAction {
     BaseJson getAllTasks();
 
     BaseJson getSearch(String str);
+
+    BaseJson isCollect(Integer taskId);
+
+    BaseJson collect(Integer taskId);
+
+    BaseJson getCollectedTasks();
+
+    BaseJson getCompanyTasks(Integer companyId);
 }

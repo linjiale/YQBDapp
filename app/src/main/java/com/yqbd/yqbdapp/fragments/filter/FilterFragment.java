@@ -5,17 +5,13 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.yqbd.yqbdapp.ActionInject;
+import com.yqbd.yqbdapp.utils.ActionInject;
 import com.yqbd.yqbdapp.R;
-import com.yqbd.yqbdapp.actions.IBaseAction;
 import com.yqbd.yqbdapp.actions.ITaskAction;
 import com.yqbd.yqbdapp.actions.ITypeAction;
-import com.yqbd.yqbdapp.actions.impl.BaseActionImpl;
 import com.yqbd.yqbdapp.activities.task.SingleTaskActivity;
 import com.yqbd.yqbdapp.adapter.MyTaskAdapter;
 import com.yqbd.yqbdapp.annotation.Action;
@@ -94,6 +90,22 @@ public class FilterFragment extends BaseFragment implements IActionCallBack {
                 makeToast("Failed");
             }
         });
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Auto-generated method stub
+        menu.add("筛选").setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        popupWindow = new FilterPopupWindow(getActivity(), jsonArray);
+        popupWindow.showFilterPopup(main);
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -125,6 +137,7 @@ public class FilterFragment extends BaseFragment implements IActionCallBack {
                 pricePopup.showPricePopup(view, data);
             }
         });
+        priceLayout.setVisibility(View.GONE);
         // 筛选点击监听
         typeAction.getAllSearchTypes();
         //localPost(new String("初始搜索"));
@@ -135,7 +148,7 @@ public class FilterFragment extends BaseFragment implements IActionCallBack {
                 popupWindow.showFilterPopup(main);
             }
         });
-
+        filterLayout.setVisibility(View.GONE);
         taskList = (RecyclerView) getActivity().findViewById(R.id.taskList);
         linearLayoutManager = new LinearLayoutManager(this.getActivity());
         taskList.setLayoutManager(linearLayoutManager);
@@ -226,6 +239,7 @@ public class FilterFragment extends BaseFragment implements IActionCallBack {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_filter, container, false);
     }
 

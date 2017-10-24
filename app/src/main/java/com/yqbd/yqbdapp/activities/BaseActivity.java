@@ -1,19 +1,20 @@
 package com.yqbd.yqbdapp.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.yqbd.yqbdapp.ActionInject;
+import com.yqbd.yqbdapp.utils.ActionInject;
 import com.yqbd.yqbdapp.R;
+import com.yqbd.yqbdapp.utils.AsyncBitmapLoader;
 import org.greenrobot.eventbus.EventBus;
 
 public class BaseActivity extends DataActivity {
     public static final int REQUEST_CODE_PICK_IMAGE = 200;
     public static final int REQUEST_CODE_CAPTURE_CAMEIA = 201;
+    protected AsyncBitmapLoader asyncBitmapLoader = AsyncBitmapLoader.asyncBitmapLoader;
 
     @BindView(R.id.topToolBarTitle)
     TextView topToolBarTitle;
