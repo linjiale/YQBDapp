@@ -9,7 +9,6 @@ import android.view.View;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.google.common.collect.Lists;
-import com.google.gson.Gson;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.actions.ITaskAction;
 import com.yqbd.yqbdapp.activities.BaseActivity;
@@ -58,7 +57,10 @@ public class TaskListActivity extends BaseActivity implements IActionCallBack {
                 startActivity(intent);
             }
         });
-        taskAction.getCollectedTasks();
+        if( intent.getStringExtra("title").equals("我接受的任务"))
+            taskAction.getPublishTasks();
+        else
+            taskAction.getCollectedTasks();
     }
 
     @Override

@@ -2,11 +2,6 @@ package com.yqbd.yqbdapp.actions;
 
 import com.yqbd.yqbdapp.beans.TaskBean;
 import com.yqbd.yqbdapp.utils.BaseJson;
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public interface ITaskAction extends IBaseAction {
 
@@ -31,4 +26,6 @@ public interface ITaskAction extends IBaseAction {
     BaseJson getCollectedTasks();
 
     BaseJson getCompanyTasks(Integer companyId);
+
+    BaseJson getAcceptTasks();
 }

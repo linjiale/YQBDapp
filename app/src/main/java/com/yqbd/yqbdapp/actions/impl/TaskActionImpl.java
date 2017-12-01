@@ -7,10 +7,7 @@ import com.yqbd.yqbdapp.annotation.ActionService;
 import com.yqbd.yqbdapp.beans.TaskBean;
 import com.yqbd.yqbdapp.utils.BaseJson;
 import com.yqbd.yqbdapp.utils.HttpUtils;
-import org.json.JSONException;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 @ActionService("taskAction")
@@ -182,4 +179,19 @@ public class TaskActionImpl extends BaseActionImpl implements ITaskAction {
             return networkErrorResult();
         }
     }
+
+    @Override
+    public BaseJson getAcceptTasks(){
+        try {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("userId", getCurrentUserID().toString());
+            String result = httpConnectByPost("/task/getAcceptTasks", map);
+            BaseJson baseJson = new BaseJson(result);
+            return baseJson;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.w(getClass().getSimpleName(), e);
+            return networkErrorResult();
+        }
+    };
 }

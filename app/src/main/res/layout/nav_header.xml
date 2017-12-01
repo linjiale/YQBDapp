@@ -11,7 +11,7 @@
         android:src="@drawable/head"
         android:layout_centerInParent="true"/>
     <TextView
-            android:text="1102266271@qq.com"
+            android:text="674481877@qq.com"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -20,7 +20,7 @@
             android:id="@+id/telephone"
             android:layout_centerInParent="true"/>
     <TextView
-            android:text="叶润杰"
+            android:text="林佳乐"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/telephone"
