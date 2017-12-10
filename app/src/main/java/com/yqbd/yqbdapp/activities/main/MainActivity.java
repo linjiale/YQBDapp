@@ -135,6 +135,12 @@ public class MainActivity extends BaseActivity implements BottomNavigationBar.On
                         //intent.putExtra("userID", baseAction.getCurrentUserID());
                         startActivity(intent);
                         break;
+                    case R.id.nav_take:
+                        intent.setClass(MainActivity.this, TaskListActivity.class);
+                        //intent.putExtra("userID", baseAction.getCurrentUserID());
+                        intent.putExtra("title", "我接受的任务");
+                        startActivity(intent);
+                        break;
                     default:
                         break;
                 }

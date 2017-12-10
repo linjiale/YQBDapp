@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import com.google.common.collect.Lists;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.actions.ITaskAction;
+import com.yqbd.yqbdapp.actions.IUserAction;
 import com.yqbd.yqbdapp.activities.BaseActivity;
 import com.yqbd.yqbdapp.adapter.MyTaskAdapter;
 import com.yqbd.yqbdapp.annotation.Action;
@@ -32,6 +33,8 @@ public class TaskListActivity extends BaseActivity implements IActionCallBack {
     @Action
     private ITaskAction taskAction;
 
+    @Action
+    private IUserAction userAction;
     private List<TaskBean> taskBeanList = Lists.newArrayList();
 
     @Override
@@ -58,7 +61,7 @@ public class TaskListActivity extends BaseActivity implements IActionCallBack {
             }
         });
         if( intent.getStringExtra("title").equals("我接受的任务"))
-            taskAction.getPublishTasks();
+            taskAction.getTakenTask(userAction.getCurrentUserID());
         else
             taskAction.getCollectedTasks();
     }

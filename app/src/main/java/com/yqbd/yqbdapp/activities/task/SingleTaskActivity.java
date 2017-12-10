@@ -1,5 +1,6 @@
 package com.yqbd.yqbdapp.activities.task;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -20,6 +21,8 @@ import butterknife.OnClick;
 import com.yqbd.yqbdapp.R;
 import com.yqbd.yqbdapp.actions.ITaskAction;
 import com.yqbd.yqbdapp.activities.BaseActivity;
+import com.yqbd.yqbdapp.activities.main.MainActivity;
+import com.yqbd.yqbdapp.activities.personal.PersonalActivity;
 import com.yqbd.yqbdapp.annotation.Action;
 import com.yqbd.yqbdapp.annotation.VoData;
 import com.yqbd.yqbdapp.beans.TaskBean;
@@ -77,6 +80,8 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
     ImageView imageView;
     @BindView(R.id.tagview)
     TagListView tagview;
+    @BindView(R.id.participant_button)
+    Button participantButton;
     @VoData
     private TaskBean taskBean;
 
@@ -113,9 +118,20 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
         taskButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                makeToast("通过身份验证才能申请");
+                taskAction.take(taskBean.getTaskId());
             }
         });
+        participantButton.setOnClickListener(new View.OnClickListener() {
+            Intent intent = new Intent();
+            @Override
+            public void onClick(View v) {
+                intent.setClass(SingleTaskActivity.this, PeopleActivity.class);
+                intent.putExtra("taskId", String.valueOf(taskBean.getTaskId()));
+                intent.putExtra("title", "参与者");
+                startActivity(intent);
+            }
+        });
+        taskAction.isTake(taskBean.getTaskId());
         imageButton.setOnClickListener(new View.OnClickListener() {
             Boolean flag = true;
 
@@ -172,6 +188,7 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
         getMenuInflater().inflate(R.menu.top_toolbar_style, menu);
         collectButton = menu.getItem(0);
         taskAction.isCollect(taskBean.getTaskId());
+
         return true;
     }
 
@@ -244,7 +261,14 @@ public class SingleTaskActivity extends BaseActivity implements IActionCallBack 
     @Override
     public void OnSuccess(BaseJson baseJson) {
         try {
-            resetCollectButton(baseJson.getSingleBooleanResult());
+            switch (baseJson.getReturnCode()) {
+                case "1.0.C.0":
+                    resetCollectButton(baseJson.getSingleBooleanResult());
+                    break;
+                case "1.0.T.0":
+                    resetTaskButton(baseJson.getSingleBooleanResult());
+                    break;
+            }
         } catch (Exception e) {
             onFailed(baseJson);
         }

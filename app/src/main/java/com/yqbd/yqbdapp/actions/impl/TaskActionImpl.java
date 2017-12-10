@@ -28,11 +28,11 @@ public class TaskActionImpl extends BaseActionImpl implements ITaskAction {
     }
 
     @Override
-    public BaseJson getPublishTasks(Integer userId) {
+    public BaseJson getTakenTask(Integer userId) {
         try {
             Map<String, String> map = Maps.newHashMap();
             map.put("userId", userId.toString());
-            String result = httpConnectByPost("/task/publishTasks", map);
+            String result = httpConnectByPost("/task/getTakenTask", map);
             BaseJson baseJson = new BaseJson(result);
             return baseJson;
         } catch (Exception e) {
@@ -150,6 +150,41 @@ public class TaskActionImpl extends BaseActionImpl implements ITaskAction {
         }
     }
 
+
+    @Override
+    public BaseJson isTake(Integer taskId) {
+        try {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("userId", getCurrentUserID().toString());
+            map.put("taskId", taskId.toString());
+            String result = httpConnectByPost("/task/isTake", map);
+            BaseJson baseJson = new BaseJson(result);
+            return baseJson;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.w(getClass().getSimpleName(), e);
+            return networkErrorResult();
+        }
+    }
+
+
+    @Override
+    public BaseJson take(Integer taskId) {
+        try {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("userId", getCurrentUserID().toString());
+            map.put("taskId", taskId.toString());
+            String result = httpConnectByPost("/task/take", map);
+            BaseJson baseJson = new BaseJson(result);
+            return baseJson;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.w(getClass().getSimpleName(), e);
+            return networkErrorResult();
+        }
+    }
+
+
     @Override
     public BaseJson getCollectedTasks() {
         try {
@@ -186,6 +221,21 @@ public class TaskActionImpl extends BaseActionImpl implements ITaskAction {
             Map<String, String> map = Maps.newHashMap();
             map.put("userId", getCurrentUserID().toString());
             String result = httpConnectByPost("/task/getAcceptTasks", map);
+            BaseJson baseJson = new BaseJson(result);
+            return baseJson;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            Log.w(getClass().getSimpleName(), e);
+            return networkErrorResult();
+        }
+    };
+
+    @Override
+    public  BaseJson getParticipant(Integer taskId){
+        try {
+            Map<String, String> map = Maps.newHashMap();
+            map.put("taskId", taskId.toString());
+            String result = httpConnectByPost("/task/getParticipant", map);
             BaseJson baseJson = new BaseJson(result);
             return baseJson;
         } catch (Exception e) {

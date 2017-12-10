@@ -7,7 +7,7 @@ public interface ITaskAction extends IBaseAction {
 
     BaseJson publishTaskByUser(TaskBean object);
 
-    BaseJson getPublishTasks(Integer userId);
+    BaseJson getTakenTask(Integer userId);
 
     BaseJson isUserTaken(Integer userId,Integer taskId);
 
@@ -25,7 +25,13 @@ public interface ITaskAction extends IBaseAction {
 
     BaseJson getCollectedTasks();
 
+    BaseJson isTake(Integer taskId);
+
+    BaseJson take(Integer taskId);
+
     BaseJson getCompanyTasks(Integer companyId);
 
     BaseJson getAcceptTasks();
+
+    BaseJson getParticipant(Integer taskId);
 }
